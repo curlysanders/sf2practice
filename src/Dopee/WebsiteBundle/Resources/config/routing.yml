@@ -1,3 +1,7 @@
 dopee_website_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DopeeWebsiteBundle:Default:index }
+
+dopee_website_contactform:
+    path:      /contact
+    defaults:  { _controller: DopeeWebsiteBundle:Default:contact }
