@@ -1,0 +1,7 @@
+parameters:
+#    dopee_website.example.class: Dopee\WebsiteBundle\Example
+
+services:
+#    dopee_website.example:
+#        class: %dopee_website.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

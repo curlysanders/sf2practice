@@ -1,0 +1,4 @@
+dopee_website:
+    resource: "@DopeeWebsiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
