@@ -1,5 +1,25 @@
 {% extends 'DopeeWebsiteBundle::layout.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div class="error">
+                {% for error in errors %}
+                    {{ error.message }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_row %}
+    {{ form_label(form) }}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+{% endblock form_row %}
+
 {% block main %}
 
 {% for label, flashes in app.session.flashbag.all %}
