@@ -18,23 +18,33 @@ class DefaultController extends Controller
         $form = $this->createForm(new ContactType());
 
         if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+
             $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance()
-                    ->setSubject($form->get('Onderwerp')->getData())
-                    ->setFrom($form->get('E-mailadres')->getData())
+                    ->setSubject($form->get('subject')->getData())
+                    ->setFrom($form->get('email')->getData())
                     ->setTo('sander@dope-e.nl')
                     ->setBody(
                     $this->renderView(
                         'DopeeWebsiteBundle:Mail:contact.html.twig',
                         array(
                             'ip' => $request->getClientIp(),
-                            'name' => $form->get('Naam')->getData(),
-                            'message' => $form->get('Bericht')->getData()
+                            'name' => $form->get('name')->getData(),
+                            'message' => $form->get('message')->getData()
                         )
                     )
                 );
+
+                $contactObj = $form->getData();
+
+                $contactObj->setIp($request->getClientIp());
+                $contactObj->setPostedAt(new \DateTime());
+
+                $em->persist($contactObj);
+                $em->flush();
 
                 $this->get('mailer')->send($message);
 

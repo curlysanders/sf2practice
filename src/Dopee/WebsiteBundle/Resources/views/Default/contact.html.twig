@@ -30,7 +30,7 @@
     {% endfor %}
 {% endfor %}
 
-<form action="{{ path('dopee_website_contactform') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('dopee_website_contactform') }}" method="post" novalidate {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
     <button type="submit">Verzenden</button>

@@ -15,34 +15,39 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Naam', 'text', array(
-            'attr' => array(
-                'placeholder' => 'Hoe heet je?',
-                'pattern'     => '.{2,}' //minlength
-            )
-        ))
-            ->add('E-mailadres', 'email', array(
-            'attr' => array(
-                'placeholder' => 'Wat is je e-mailadres?'
-            )
-        ))
-            ->add('Onderwerp', 'text', array(
-            'attr' => array(
-                'placeholder' => 'Het onderwerp van je bericht.',
-                'pattern'     => '.{3,}' //minlength
-            )
-        ))
-            ->add('Bericht', 'textarea', array(
-            'attr' => array(
-                'cols' => 90,
-                'rows' => 10,
-                'placeholder' => 'Vul hier je bericht in...'
-            )
-        ));
+            ->add('name', 'text', array(
+                'label' => 'Naam',
+                'attr' => array(
+                    'placeholder' => 'Hoe heet je?',
+                    'pattern'     => '.{2,}' //minlength
+                )
+            ))
+            ->add('email', 'email', array(
+                'label' => 'E-mailadres',
+                'attr' => array(
+                    'placeholder' => 'Wat is je e-mailadres?'
+                )
+            ))
+            ->add('subject', 'text', array(
+                'label' => 'Onderwerp',
+                'attr' => array(
+                    'placeholder' => 'Het onderwerp van je bericht.',
+                    'pattern'     => '.{3,}' //minlength
+                )
+            ))
+            ->add('message', 'textarea', array(
+                'label' => 'Bericht',
+                'attr' => array(
+                    'cols' => 90,
+                    'rows' => 10,
+                    'placeholder' => 'Vul hier je bericht in...'
+                )
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        /*
         $collectionConstraint = new Collection(array(
             'Naam' => array(
                 new NotBlank(array('message' => 'Dit veld is verplicht')),
@@ -64,6 +69,11 @@ class ContactType extends AbstractType
 
         $resolver->setDefaults(array(
             'constraints' => $collectionConstraint
+        ));
+        */
+
+        $resolver->setDefaults(array(
+            'data_class' => 'Dopee\WebsiteBundle\Entity\Contact'
         ));
     }
 
