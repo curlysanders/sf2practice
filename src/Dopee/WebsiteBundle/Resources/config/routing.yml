@@ -3,5 +3,10 @@ dopee_website_homepage:
     defaults: { _controller: DopeeWebsiteBundle:Default:index }
 
 dopee_website_contactform:
-    path:      /contact
+    path:      /
     defaults:  { _controller: DopeeWebsiteBundle:Default:contact }
+
+dopee_website_contact_crud:
+    resource: "@DopeeWebsiteBundle/Controller/ContactController.php"
+    prefix:   /
+    type:     annotation
